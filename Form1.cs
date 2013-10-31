@@ -1,7 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+
+/// AUTHOR: DAN FERGUSON
 
 namespace COM310JobScheduler
 {
@@ -11,7 +13,8 @@ namespace COM310JobScheduler
     //  2) ALL BURST TIMES MUST BE BETWEEN 1 - 10 TO EXECUTE
     //  3) A PROCESS THAT IS NOT BEING USED WILL NOT BE CHECKED
     //  4) ALL PRIORITIES ARE NON-UNIQUE AND BETWEEN 1 - 10
-    //  5) PROCESS ARRIVAL IS DICTATED BY ORDER LISTED ON GUI
+    //  5) ALL PROCESSES ARRIVE AT THE SAME TIME
+    //  6) IN CASE OF TIE IN PRIORITY, PREFERENCE GOES TO PROCESS ID CLOSEST TO 1
 
     public partial class Form1 : Form
     {
@@ -22,7 +25,9 @@ namespace COM310JobScheduler
         public Form1()
         {
             InitializeComponent();
-            MessageBox.Show("Before asking for the Gantt Chart, please click \"Refresh\" to ensure all data is correct");
+            MessageBox.Show("Before asking for the Gantt Chart, please click \n\"Refresh\"\n to ensure all data is correct.\n" +
+                            "Written by Colleen Fitzsimons and Dan Ferguson.\n" +
+                            "COM310 CPU Scheduling Simulator, S. Jane Fritz");
         }
 
         private void Form1_Load(object sender, EventArgs e)

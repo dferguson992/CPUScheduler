@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿/// AUTHOR: DAN FERGUSON
 
 namespace COM310JobScheduler
 {
+    /// <summary>
+    /// DEFINES THE PROCESS OBJECT
+    /// </summary>
     public class Process
     {
         private int pid;
@@ -43,7 +43,7 @@ namespace COM310JobScheduler
         public int ArriveTime { get { return arriveTime; } }
         public int WaitTime { get { return waitTime; } set { waitTime = value; } }
         public int TurnAroundTime { get { return turnAroundTime; } set { turnAroundTime = value; } }
-        public int Priority { get { return priority; } }
+        public int Priority { get { return priority; } set { priority = value; } }
         public bool Prioritized { get { return prioritized; } }
         #endregion
     }

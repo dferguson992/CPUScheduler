@@ -1,26 +1,27 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
+
+/// AUTHOR: DAN FERGUSON
 
 namespace COM310JobScheduler
 {
     /// <summary>
-    /// ROUND-ROBIN CLASS
+    /// PRIORITY CLASS
     /// </summary>
-    public class RR : Scheduler, Algorithm
+    
+    public class Priority : Scheduler, Algorithm
     {
-        private int quantum = 0;
-        public RR(int quantum)
-        {
-            this.quantum = quantum;
-        }
-
+        /// <summary>
+        /// CALCULATES GANTT CHART FOR THIS ALGORITHM
+        /// INHERITED FROM BASE CLASS AND INTERFACE
+        /// </summary>
+        /// <param name="activeProcesses">LIST OF ALL PROCESSES THAT ARE ACTIVE</param>
+        /// <returns>RETURNS THE STRING REPRESENTATION OF A GANTT CHART BUILT BY A STRINGBUILDER</returns>
         public override string calculateGantt(List<Process> activeProcesses)
         {
             StringBuilder gantt = new StringBuilder();
             int totalWaitTime = 0;
-            //sortArrival(ref activeProcesses);
+            sortPriority(ref activeProcesses);
             bool complete = false;
             int i = 0;
             while(!complete)
@@ -40,19 +41,11 @@ namespace COM310JobScheduler
                     {
                         if (p.BurstTime != 999)
                         {
-                            p.BurstTime = p.BurstTime - quantum;
                             p.WaitTime = totalWaitTime;
-                            if (p.BurstTime < 0)
-                            {
-                                totalWaitTime = totalWaitTime + quantum - (Math.Abs(p.BurstTime));
-                            }
-                            else totalWaitTime = totalWaitTime + quantum;
+                            totalWaitTime += p.BurstTime;
+                            p.TurnAroundTime = p.WaitTime + p.InitialBurst;
                             buildGantt(p, ref gantt);
-                            if (p.BurstTime <= 0)
-                            {
-                                p.BurstTime = 999;
-                                p.TurnAroundTime = p.WaitTime + p.InitialBurst;
-                            }
+                            p.BurstTime = 999;
                         }
                         else continue;
                     }
@@ -62,14 +55,14 @@ namespace COM310JobScheduler
             return gantt.ToString();
         }
 
-        private void buildGantt(Process p, ref StringBuilder g)
+        /// <summary>
+        /// CALLS BASE METHOD TO ADD GANTT CHART INFO TO A STRINGBUILDER
+        /// </summary>
+        /// <param name="p">THE REFERENCED PROCESS</param>
+        /// <param name="g">THE STRING BUILDER OBJECT BEING ADDED TO</param>
+        private new void buildGantt(Process p, ref StringBuilder g)
         {
-            g.Append("--------------------\n");
-            g.Append("|                  |\n");
-            g.Append("|       P" + p.PID + "        |\n");
-            g.Append("|  wait: " + p.WaitTime + "       |\n");
-            g.Append("|                  |\n");
-
+            base.buildGantt(p, ref g);
         }
     }
 }

@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace COM310JobScheduler
 {
@@ -16,5 +13,7 @@ namespace COM310JobScheduler
         /// <param name="activeProcesses">LIST OF PROCESSES FROM GUI</param>
         /// <returns>STRING REPRESENATION OF GANTT</returns>
         string calculateGantt(List<Process> activeProcesses);
+
+
     }
 }

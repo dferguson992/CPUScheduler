@@ -1,7 +1,8 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+
+/// AUTHOR: DAN FERGUSON
 
 namespace COM310JobScheduler
 {
@@ -11,11 +12,21 @@ namespace COM310JobScheduler
     public class RR : Scheduler, Algorithm
     {
         private int quantum = 0;
+        /// <summary>
+        /// CONSTRUCTOR FOR ROUND-ROBIN CLASS
+        /// </summary>
+        /// <param name="quantum">QUANTUM DURATION</param>
         public RR(int quantum)
         {
             this.quantum = quantum;
         }
 
+        /// <summary>
+        /// CALCULATES GANTT CHART FOR THIS ALGORITHM
+        /// INHERITED FROM BASE CLASS AND INTERFACE
+        /// </summary>
+        /// <param name="activeProcesses">LIST OF ALL PROCESSES THAT ARE ACTIVE</param>
+        /// <returns>RETURNS THE STRING REPRESENTATION OF A GANTT CHART BUILT BY A STRINGBUILDER</returns>
         public override string calculateGantt(List<Process> activeProcesses)
         {
             StringBuilder gantt = new StringBuilder();
@@ -62,14 +73,14 @@ namespace COM310JobScheduler
             return gantt.ToString();
         }
 
-        private void buildGantt(Process p, ref StringBuilder g)
+        /// <summary>
+        /// CALLS BASE METHOD TO ADD GANTT CHART INFO TO A STRINGBUILDER
+        /// </summary>
+        /// <param name="p">THE REFERENCED PROCESS</param>
+        /// <param name="g">THE STRING BUILDER OBJECT BEING ADDED TO</param>
+        private new void buildGantt(Process p, ref StringBuilder g)
         {
-            g.Append("--------------------\n");
-            g.Append("|                  |\n");
-            g.Append("|       P" + p.PID + "        |\n");
-            g.Append("|  wait: " + p.WaitTime + "       |\n");
-            g.Append("|                  |\n");
-
+            base.buildGantt(p, ref g);
         }
     }
 }
