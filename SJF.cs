@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 /// AUTHOR: COLLEEN FITZSIMONS
 
@@ -62,9 +60,9 @@ namespace COM310JobScheduler
             gantt.Append("--------------------\n\n");
             return gantt.ToString();
         }
-        public override string calculateGantt(List<Process> activeProcesses)
+        private new void buildGantt(Process p, ref StringBuilder g)
         {
-            base.buildGantt(p, ref g);
+            return base.buildGantt(p, ref g);
         }
     }
 }
