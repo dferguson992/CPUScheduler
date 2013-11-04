@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 /// AUTHOR: COLLEEN FITZSIMONS
 
@@ -20,17 +21,17 @@ namespace COM310JobScheduler
         {
             StringBuilder gantt = new StringBuilder();
             int totalWaitTime = 0;
-            
+
             ///By using the sorting algorithm, we will be able to determine the order of processes
-            ///based on the burst time of each of them.  Because the only way of doing this is by 
+            ///based on the burst time of each of them. Because the only way of doing this is by
             ///either having future knowledge(which is impossible), or by having all of the processes
-            ///arrive at the same time, we are using the latter method.  This will allow us to be able
+            ///arrive at the same time, we are using the latter method. This will allow us to be able
             ///to determine the order of the processes to have the most efficient wait times and turnaround times.
-            
+
             sortSize(ref activeProcesses);
             bool complete = false;
             int i = 0;
-            while(!complete)
+            while (!complete)
             {
                 if (activeProcesses[i++].BurstTime == 999)
                 {
@@ -62,7 +63,7 @@ namespace COM310JobScheduler
         }
         private new void buildGantt(Process p, ref StringBuilder g)
         {
-            return base.buildGantt(p, ref g);
+            base.buildGantt(p, ref g);
         }
     }
 }
