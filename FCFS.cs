@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 /// AUTHOR: COLEEN FITZSIMONS
 
@@ -66,7 +64,7 @@ namespace COM310JobScheduler
         }
         public override string calculateGantt(List<Process> activeProcesses)
         {
-            base.buildGantt(p, ref g);
+            return base.buildGantt(p, ref g);
         }
     }
 }
